@@ -28,6 +28,16 @@ term.focus();
 fitAddon.fit(); // Initial fit
 
 // Capture user input and write to terminal
-term.onData(data => {
-    term.write(data);
+input.addEventListener('input', function () {
+    term.write(input.value.slice(-1)); // Write the last character of input to the terminal
+});
+
+// Handle backspace to remove characters from the terminal
+input.addEventListener('keydown', function (event) {
+    if (event.key === 'Backspace') {
+        event.preventDefault();
+        const inputValue = input.value.slice(0, -1);
+        input.value = inputValue;
+        term.write('\b \b'); // Move the cursor back and erase the character
+    }
 });
