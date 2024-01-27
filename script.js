@@ -11,7 +11,7 @@ window.addEventListener('resize', () => {
     fitAddon.fit();
 });
 
-input.addEventListener('keydown', function(event) {
+input.addEventListener('keydown', function (event) {
     if (event.key === 'Enter') {
         event.preventDefault();
         const command = input.value;
@@ -27,3 +27,7 @@ term.write('$ ');
 term.focus();
 fitAddon.fit(); // Initial fit
 
+// Capture user input and write to terminal
+term.onData(data => {
+    term.write(data);
+});
